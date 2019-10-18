@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Amilli</title>
+    <style>
+      html {
+        font-family: sans-serif;
+        color: #222;
+        font-weight: lighter;
+        padding: 1rem;
+      }
+
+      h1 {
+        font-weight: lighter;
+      }
+      h2 {
+        font-weight: lighter;
+      }
+
+      p {
+        font-weight: 300;
+      }
+
+      output {
+        font-size: 1.25rem;
+      }
+
+      label {
+        font-size: 1rem;
+        color: #666;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header style="margin: 3rem 0">
+      <h1 style="margin: 0"><span aria-hidden="true">∲</span> Amilli</h1>
+      <h2 style="font-size: 1.25rem; margin: 0.5rem 0 0 0">
+        A really simple website to help with time
+      </h2>
+      <p style="margin: 0.25rem 0">
+        You can put a desired timestamp into the path to have the time for the
+        site locked.
+        <br />
+        For example <a href="/741412800000">my birthday</a>.
+      </p>
+    </header>
+
+    <div>
+      <label
+        for="epoch"
+        title="The time in Unix epoch time.  The number of milliseconds since January 1st 1970"
+      >
+        Epoch
+      </label>
+      <output id="epoch" style="display: block; margin-top:.25rem">
+        ...
+      </output>
+    </div>
+
+    <div style="margin-top: 1rem">
+      <label for="iso8601">
+        ISO-8601
+      </label>
+      <output
+        id="iso8601"
+        title="The time in ISO-8601 format"
+        style="display: block; margin-top:.25rem"
+      >
+        ...
+      </output>
+    </div>
+  </body>
+  <script src="amilli.js"></script>
+</html>
