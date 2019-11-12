@@ -34,7 +34,7 @@
     </style>
   </head>
 
-  <body>
+  <body style="min-width: 280px">
     <header style="margin: 3rem 0">
       <h1 style="margin: 0"><span aria-hidden="true">∲</span> Amilli</h1>
       <h2 style="font-size: 1.25rem; margin: 0.5rem 0 0 0">
@@ -47,61 +47,142 @@
         https://amil.li/&lt;In Here 🙃&gt;
       </p>
 
-      <br />
-      <label
-        for="epoch"
-        title="The time in Unix epoch time. The number of milliseconds since January 1st 1970"
-      >
-        Epoch
-      </label>
-      <br />
-      <a href="/741398400000">
-        /741398400000
-      </a>
+      <div style="margin-top:1rem;">
+        <label
+          for="epoch"
+          title="The time in Unix epoch time. The number of milliseconds since January 1st 1970"
+        >
+          Epoch
+        </label>
+        <br />
+        <a href="/741398400000">
+          /741398400000
+        </a>
+      </div>
 
-      <br /><br />
-      <label for="iso8601">
-        ISO-8601
-      </label>
-      <br />
-      <a href="/2000-01-20T12:34:56.777Z">
-        /2000-01-20T12:34:56.777Z
-      </a>
+      <div style="margin-top:1rem;">
+        <label for="iso8601">
+          ISO-8601
+        </label>
+        <br />
+        <a href="/2000-01-20T12:34:56.777Z">
+          /2000-01-20T12:34:56.777Z
+        </a>
+      </div>
 
-      <br /><br />
-      <label for="iso8601">
-        Just the year (0 to 3000)
-      </label>
-      <br />
-      <a href="/1987">
-        /1987
-      </a>
+      <div style="margin-top:1rem;">
+        <label for="iso8601">
+          Just the year (0 to 3000)
+        </label>
+        <br />
+        <a href="/1987">
+          /1987
+        </a>
+      </div>
     </header>
 
-    <div>
-      <label
-        for="epoch"
-        title="The time in Unix epoch time.  The number of milliseconds since January 1st 1970"
-      >
-        Epoch
-      </label>
-      <output id="epoch" style="display: block; margin-top:.25rem">
-        ...
-      </output>
-    </div>
+    <!-- Output -->
+    <div style="border: 1px solid #ccc; padding: 1rem">
+      <div style="height: 17px">
+        <a id="resume" href="/">Resume</a>
+      </div>
+      <div style="margin-top: 1rem">
+        <label for="human">
+          For Humans (UTC)
+        </label>
+        <output
+          id="human"
+          title="The time, the human readable"
+          style="display: block; margin-top:.25rem"
+        >
+          ...
+        </output>
+      </div>
 
-    <div style="margin-top: 1rem">
-      <label for="iso8601">
-        ISO-8601
-      </label>
-      <output
-        id="iso8601"
-        title="The time in ISO-8601 format"
-        style="display: block; margin-top:.25rem"
-      >
-        ...
-      </output>
+      <div style="margin-top: 1rem;">
+        <label
+          for="epoch"
+          title="The time in Unix epoch time.  The number of milliseconds since January 1st 1970"
+        >
+          Epoch (UTC)
+        </label>
+        <output
+          id="epoch"
+          style="display: block; margin-top:.25rem"
+          onclick="setPathValue()"
+        >
+          ...
+        </output>
+      </div>
+
+      <div style="margin-top: 1rem">
+        <label for="iso8601">
+          ISO-8601 (UTC)
+        </label>
+        <output
+          id="iso8601"
+          title="The time in ISO-8601 format"
+          style="display: block; margin-top:.25rem"
+        >
+          ...
+        </output>
+      </div>
     </div>
   </body>
-  <script src="amilli.js"></script>
+  <script>
+    var epochElement = document.getElementById("epoch");
+    var iso8601Element = document.getElementById("iso8601");
+    var humanElement = document.getElementById("human");
+    var resumeElement = document.getElementById("resume");
+
+    const REFRESH_RATE_MS = 333;
+
+    function getPathValue() {
+      const result = window.location.pathname.slice(
+        1,
+        window.location.pathname.length
+      );
+
+      // Attempt to cast to number
+      const numericResult = Number(result);
+      // If numeric result is NaN, return the value string
+      if (numericResult.toString() == "NaN") return result;
+      // Range for year-only input
+      else if (numericResult >= 0 && numericResult < 3000) return result;
+      // Is probably epoch, return as number
+      else return numericResult;
+    }
+
+    var pathValue = getPathValue();
+
+    function setPathValue() {
+      if (pathValue) return;
+      window.location = new Date().getTime().toString();
+    }
+
+    function render() {
+      if (pathValue) var now = new Date(pathValue);
+      else var now = new Date();
+
+      var epoch = now.getTime().toString();
+      var iso8601 = now.toISOString();
+      var human = now.toUTCString();
+
+      if (pathValue) {
+        resumeElement.innerHTML = "Resume";
+      } else {
+        resumeElement.innerHTML = "Pause";
+        resumeElement.href = "/" + epoch;
+      }
+
+      epochElement.innerHTML = epoch;
+      iso8601Element.innerHTML = iso8601;
+      humanElement.innerHTML = human;
+    }
+
+    render();
+
+    // If there is not a set date, render the current time on an interval
+    if (!pathValue) setInterval(render, REFRESH_RATE_MS);
+  </script>
 </html>
