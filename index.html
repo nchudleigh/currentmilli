@@ -87,12 +87,26 @@
         <a id="resume" href="/">Resume</a>
       </div>
       <div style="margin-top: 1rem">
+        <label for="human-local">
+          For Humans (Local)
+        </label>
+        <output
+          id="human-local"
+          title="Human readable in your timezone"
+          style="display: block; margin-top:.25rem"
+          onclick="setPathValue()"
+        >
+          ...
+        </output>
+      </div>
+
+      <div style="margin-top: 1rem">
         <label for="human">
           For Humans (UTC)
         </label>
         <output
           id="human"
-          title="The time, the human readable"
+          title="Human readable in UTC"
           style="display: block; margin-top:.25rem"
           onclick="setPathValue()"
         >
@@ -135,6 +149,7 @@
     var epochElement = document.getElementById("epoch");
     var iso8601Element = document.getElementById("iso8601");
     var humanElement = document.getElementById("human");
+    var humanLocalElement = document.getElementById("human-local");
     var resumeElement = document.getElementById("resume");
 
     const REFRESH_RATE_MS = 333;
@@ -169,6 +184,7 @@
       var epoch = now.getTime().toString();
       var iso8601 = now.toISOString();
       var human = now.toUTCString();
+      var humanLocal = now.toString();
 
       if (pathValue) {
         resumeElement.innerHTML = "Resume";
@@ -180,6 +196,7 @@
       epochElement.innerHTML = epoch;
       iso8601Element.innerHTML = iso8601;
       humanElement.innerHTML = human;
+      humanLocalElement.innerHTML = humanLocal;
     }
 
     render();
