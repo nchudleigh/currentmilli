@@ -123,6 +123,11 @@
       <div style="height: 17px">
         <a id="resume" href="/">Resume</a>
       </div>
+
+      <span style="color:#ccc"
+        >var now = new Date(<span id="path-value"></span>)</span
+      >
+
       <div style="margin-top: 1rem">
         <label for="human-local">
           For Humans (Local)
@@ -135,6 +140,7 @@
         >
           ...
         </output>
+        <span style="color:#ccc">now.toString()</span>
       </div>
 
       <div style="margin-top: 1rem">
@@ -149,6 +155,7 @@
         >
           ...
         </output>
+        <span style="color:#ccc">now.toUTCString()</span>
       </div>
 
       <div style="margin-top: 1rem;">
@@ -165,6 +172,7 @@
         >
           ...
         </output>
+        <span style="color:#ccc">now.getTime().toString()</span>
       </div>
 
       <div style="margin-top: 1rem">
@@ -179,6 +187,7 @@
         >
           ...
         </output>
+        <span style="color:#ccc">now.toISOString()</span>
       </div>
     </div>
   </body>
@@ -188,6 +197,7 @@
     var humanElement = document.getElementById("human");
     var humanLocalElement = document.getElementById("human-local");
     var resumeElement = document.getElementById("resume");
+    var pathValueElement = document.getElementById("path-value");
 
     const REFRESH_RATE_MS = 333;
 
@@ -234,6 +244,7 @@
       iso8601Element.innerHTML = iso8601;
       humanElement.innerHTML = human;
       humanLocalElement.innerHTML = humanLocal;
+      pathValueElement.innerHTML = pathValue;
     }
 
     render();
