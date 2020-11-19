@@ -1,193 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Amilli</title>
     <style>
-      html {
-        font-family: sans-serif;
-        color: #222;
-        font-weight: lighter;
-        padding: 1rem;
-      }
-
-      h1,
-      h2,
-      h3 {
-        font-weight: lighter;
-      }
-
-      p {
-        font-weight: 300;
-      }
-
-      output {
-        font-size: 1.25rem;
-      }
-
-      label {
-        font-size: 1rem;
-        color: #666;
-      }
-
-      .spin:hover {
-        rotate: 15deg;
-      }
-
-      .kofi-button {
-        margin-top: -1.5rem;
-        margin-right: 1rem;
-      }
+        html {
+            font-family: sans-serif;
+            color: #222;
+            font-weight: lighter;
+            padding: 1rem;
+        }
+        
+        h1,
+        h2,
+        h3 {
+            font-weight: lighter;
+        }
+        
+        p {
+            font-weight: 300;
+        }
+        
+        output {
+            font-size: 1.25rem;
+        }
+        
+        label {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        .spin:hover {
+            rotate: 15deg;
+        }
     </style>
-  </head>
+</head>
 
-  <body style="min-width: 280px">
-    <div style="position: absolute; right:40px; top: 40px">
-
-      <a
-        href="https://github.com/nchudleigh/amilli"
-        title="Amilli repository"
-        target="_blank"
-        style="text-decoration: none"
-      >
-        <img src="/github.svg" alt="" class="spin" aria-hidden />
-      </a>
-
-      <a
-        href="https://webring.xxiivv.com/#random"
-        target="_blank"
-        title="Spin the wheel of random cool web things"
-      >
-        <img
-          style="max-height: 40px"
-          class="spin"
-          src="/webring.svg"
-          aria-hidden
-        />
-      </a>
+<body style="min-width: 280px">
+    <div style="position: absolute; right: 40px; top: 40px">
+        <a href="https://github.com/nchudleigh/amilli" title="Amilli repository" target="_blank" style="text-decoration: none">
+            <img src="/github.svg" alt="" class="spin" aria-hidden />
+        </a>
     </div>
 
     <header style="margin: 3rem 0">
-      <h1 style="margin: 0"><span aria-hidden="true">∲</span> Amilli</h1>
-      <h2 style="font-size: 1.25rem; margin: 0.5rem 0 0 0">
-        A simple website to help with time
-      </h2>
-      <p style="margin: 0.25rem 0">
-        Put a desired timestamp, year or date string into the path.
-      </p>
-      <p>
-        https://amil.li/&lt;In Here 🙃&gt;
-      </p>
+        <h1 style="margin: 0"><span aria-hidden="true">∲</span> Amilli</h1>
+        <h2 style="font-size: 1.25rem; margin: 0.5rem 0 0 0">
+            A simple website to help with time
+        </h2>
+        <p style="margin: 0.25rem 0">
+            Put a desired timestamp, year or date string into the path.
+        </p>
+        <p>https://amil.li/&lt;In Here 🙃&gt;</p>
 
-      <div style="margin-top:1rem;">
-        <label
-          title="The time in Unix epoch time. The number of milliseconds since January 1st 1970"
-        >
+        <div style="margin-top: 1rem">
+            <label title="The time in Unix epoch time. The number of milliseconds since January 1st 1970">
           Epoch
         </label>
-        <br />
-        <a href="/741398400000">
-          /741398400000
-        </a>
-      </div>
+            <br />
+            <a href="/741398400000"> /741398400000 </a>
+        </div>
 
-      <div style="margin-top:1rem;">
-        <label>
-          ISO-8601
-        </label>
-        <br />
-        <a href="/2000-01-20T12:34:56.777Z">
-          /2000-01-20T12:34:56.777Z
-        </a>
-      </div>
+        <div style="margin-top: 1rem">
+            <label> ISO-8601 </label>
+            <br />
+            <a href="/2000-01-20T12:34:56.777Z"> /2000-01-20T12:34:56.777Z </a>
+        </div>
 
-      <div style="margin-top:1rem;">
-        <label for="iso8601">
-          Date
-        </label>
-        <br />
-        <a href="/1987-08-27">
-          /1987-08-27
-        </a>
-      </div>
+        <div style="margin-top: 1rem">
+            <label for="iso8601"> Date </label>
+            <br />
+            <a href="/1987-08-27"> /1987-08-27 </a>
+        </div>
     </header>
 
     <!-- Output -->
     <div style="border: 1px solid #ccc; padding: 1rem">
-      <div style="height: 17px">
-        <a id="resume" href="/">Resume</a>
-      </div>
+        <div style="height: 17px">
+            <a id="resume" href="/">Resume</a>
+        </div>
 
-      <span style="color:#ccc"
-        >var now = new Date(<span id="path-value"></span>)</span
-      >
+        <span style="color: #ccc">var now = new Date(<span id="path-value"></span>)</span>
 
-      <div style="margin-top: 1rem">
-        <label for="human-local">
-          For Humans (Local)
-        </label>
-        <output
-          id="human-local"
-          title="Human readable in your timezone"
-          style="display: block; margin-top:.25rem"
-          onclick="setPathValue()"
-        >
+        <div style="margin-top: 1rem">
+            <label for="human-local"> For Humans (Local) </label>
+            <output id="human-local" title="Human readable in your timezone" style="display: block; margin-top: 0.25rem" onclick="setPathValue()">
           ...
         </output>
-        <span style="color:#ccc">now.toString()</span>
-      </div>
+            <span style="color: #ccc">now.toString()</span>
+        </div>
 
-      <div style="margin-top: 1rem">
-        <label for="human">
-          For Humans (UTC)
-        </label>
-        <output
-          id="human"
-          title="Human readable in UTC"
-          style="display: block; margin-top:.25rem"
-          onclick="setPathValue()"
-        >
+        <div style="margin-top: 1rem">
+            <label for="human"> For Humans (UTC) </label>
+            <output id="human" title="Human readable in UTC" style="display: block; margin-top: 0.25rem" onclick="setPathValue()">
           ...
         </output>
-        <span style="color:#ccc">now.toUTCString()</span>
-      </div>
+            <span style="color: #ccc">now.toUTCString()</span>
+        </div>
 
-      <div style="margin-top: 1rem;">
-        <label
-          for="epoch"
-          title="The time in Unix epoch time.  The number of milliseconds since January 1st 1970"
-        >
+        <div style="margin-top: 1rem">
+            <label for="epoch" title="The time in Unix epoch time.  The number of milliseconds since January 1st 1970">
           Epoch (UTC)
         </label>
-        <output
-          id="epoch"
-          style="display: block; margin-top:.25rem"
-          onclick="setPathValue()"
-        >
+            <output id="epoch" style="display: block; margin-top: 0.25rem" onclick="setPathValue()">
           ...
         </output>
-        <span style="color:#ccc">now.getTime().toString()</span>
-      </div>
+            <span style="color: #ccc">now.getTime().toString()</span>
+        </div>
 
-      <div style="margin-top: 1rem">
-        <label for="iso8601">
-          ISO-8601 (UTC)
-        </label>
-        <output
-          id="iso8601"
-          title="The time in ISO-8601 format"
-          style="display: block; margin-top:.25rem"
-          onclick="setPathValue()"
-        >
+        <div style="margin-top: 1rem">
+            <label for="iso8601"> ISO-8601 (UTC) </label>
+            <output id="iso8601" title="The time in ISO-8601 format" style="display: block; margin-top: 0.25rem" onclick="setPathValue()">
           ...
         </output>
-        <span style="color:#ccc">now.toISOString()</span>
-      </div>
+            <span style="color: #ccc">now.toISOString()</span>
+        </div>
     </div>
-  </body>
-  <script>
+</body>
+<script>
     var epochElement = document.getElementById("epoch");
     var iso8601Element = document.getElementById("iso8601");
     var humanElement = document.getElementById("human");
@@ -198,54 +131,55 @@
     const REFRESH_RATE_MS = 333;
 
     function getPathValue() {
-      const result = window.location.pathname.slice(
-        1,
-        window.location.pathname.length
-      );
+        const result = window.location.pathname.slice(
+            1,
+            window.location.pathname.length
+        );
 
-      // Attempt to cast to number
-      const numericResult = Number(result);
-      // If numeric result is NaN, return the value string
-      if (numericResult.toString() == "NaN") return result;
-      // Range for year-only input 🗿
-      else if (numericResult >= 0 && numericResult < 3000) return result;
-      // Is probably epoch, return as number
-      else return numericResult;
+        // Attempt to cast to number
+        const numericResult = Number(result);
+        // If numeric result is NaN, return the value string
+        if (numericResult.toString() == "NaN") return result;
+        // Range for year-only input 🗿
+        else if (numericResult >= 0 && numericResult < 3000) return result;
+        // Is probably epoch, return as number
+        else return numericResult;
     }
 
     var pathValue = getPathValue();
 
     function setPathValue() {
-      if (pathValue) return;
-      window.location = new Date().getTime().toString();
+        if (pathValue) return;
+        window.location = new Date().getTime().toString();
     }
 
     function render() {
-      if (pathValue) var now = new Date(pathValue);
-      else var now = new Date();
+        if (pathValue) var now = new Date(pathValue);
+        else var now = new Date();
 
-      var epoch = now.getTime().toString();
-      var iso8601 = now.toISOString();
-      var human = now.toUTCString();
-      var humanLocal = now.toString();
+        var epoch = now.getTime().toString();
+        var iso8601 = now.toISOString();
+        var human = now.toUTCString();
+        var humanLocal = now.toString();
 
-      if (pathValue) {
-        resumeElement.innerHTML = "Resume";
-      } else {
-        resumeElement.innerHTML = "Pause";
-        resumeElement.href = "/" + epoch;
-      }
+        if (pathValue) {
+            resumeElement.innerHTML = "Resume";
+        } else {
+            resumeElement.innerHTML = "Pause";
+            resumeElement.href = "/" + epoch;
+        }
 
-      epochElement.innerHTML = epoch;
-      iso8601Element.innerHTML = iso8601;
-      humanElement.innerHTML = human;
-      humanLocalElement.innerHTML = humanLocal;
-      pathValueElement.innerHTML = pathValue;
+        epochElement.innerHTML = epoch;
+        iso8601Element.innerHTML = iso8601;
+        humanElement.innerHTML = human;
+        humanLocalElement.innerHTML = humanLocal;
+        pathValueElement.innerHTML = pathValue;
     }
 
     render();
 
     // If there is not a set date, render the current time on an interval
     if (!pathValue) setInterval(render, REFRESH_RATE_MS);
-  </script>
+</script>
+
 </html>
